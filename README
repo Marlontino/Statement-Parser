@@ -1,0 +1,20 @@
+README
+
+Niko Perry
+CS530 Spring 24
+cssc4023
+
+File manifest:
+    scanner.l
+    parser.y
+    test.txt
+    Makefile
+    README
+
+Compile instructions:
+
+
+Design decisions:
+
+
+Lessons:
