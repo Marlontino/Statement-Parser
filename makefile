@@ -1,3 +1,5 @@
+# Makefile for CS530 Assignment3
+# Niko Perry
 BB=bison
 FF=flex
 CC=gcc
