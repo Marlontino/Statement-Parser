@@ -7,33 +7,33 @@ int yyerror(char *s);
 
 %}
 
-%token STRING NUM OTHER SEMICOLON
+%token ID NUM SPACE OPERATOR OTHER SEMICOLON
+%token LEFT_BRACKET RIGHT_BRACKET EQU
 
-%type <name> STRING
+%type <id> ID
 %type <number> NUM
 
 %union{
-	  char name[20];
+	char id[25];
     int number;
 }
 
 %%
 
-prog:
-  stmts
+prog: STATEMENTS
 ;
 
-stmts:
-		| stmt SEMICOLON stmts
+STATEMENTS: stmt SPACE STATEMENTS 
+		| stmt SEMICOLON  {printf("\t-- valid");}
+        |      
 
 stmt:
-		STRING {
-				printf("Your entered a string - %s", $1);
-		}
+		ID 
+				
 		| NUM {
 				printf("The number you entered is - %d", $1);
 		}
-		| OTHER
+		|  OTHER
 ;
 
 %%
