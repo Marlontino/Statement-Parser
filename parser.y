@@ -4,11 +4,12 @@
 
 int yylex();
 int yyerror(char *s);
+FILE* yyin;
 
 %}
 
 %token ID NUM SPACE OPERATOR OTHER SEMICOLON
-%token LEFT_BRACKET RIGHT_BRACKET EQU
+%token LEFT_BRACKET RIGHT_BRACKET EQU NEWLINE
 
 %type <id> ID
 %type <number> NUM
@@ -20,17 +21,15 @@ int yyerror(char *s);
 
 %%
 
-prog: STATEMENTS        {printf("\t-- valid Statement");}
-    | EXPRESSION        {printf("\t-- valid Expression");}
+prog: STATEMENT NEWLINE       {printf("\t-- valid Statement");}
+    | EXPRESSION NEWLINE      {printf("\t-- valid Expression");}
 ;
 
-STATEMENTS: ID SPACE EQU SPACE EXPRESSION SEMICOLON     
-		  | EXPRESSION  
+STATEMENT: ID SPACE EQU SPACE EXPRESSION SPACE SEMICOLON     
 
-
-EXPRESSION: ID SPACE OPERATOR SPACE EXPRESSION
-          | ID SPACE OPERATOR LEFT_BRACKET EXPRESSION RIGHT_BRACKET
-          | ID SPACE OPERATOR LEFT_BRACKET EXPRESSION RIGHT_BRACKET SPACE EXPRESSION
+EXPRESSION: ID SPACE OPERATOR SPACE ID
+          | ID SPACE OPERATOR SPACE NUM
+          | ID SPACE OPERATOR SPACE LEFT_BRACKET EXPRESSION RIGHT_BRACKET
           | NUM SPACE OPERATOR SPACE NUM
           | NUM SPACE OPERATOR SPACE ID
           | LEFT_BRACKET EXPRESSION RIGHT_BRACKET
@@ -41,12 +40,13 @@ EXPRESSION: ID SPACE OPERATOR SPACE EXPRESSION
 
 int yyerror(char *s)
 {
-	printf("Syntax Error on line %s\n", s);
+	printf("Invalid Token %s\n", s);
 	return 0;
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    yyin = fopen(argv[1], "r");
     yyparse();
     return 0;
 }

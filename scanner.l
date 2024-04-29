@@ -15,15 +15,16 @@ operators   [\+\-\*/%]
 
 %%
 
-{id}			   {ECHO; return (ID);}
-{number}      {ECHO; return (NUM);}
+{id}            {ECHO; return (ID);}
+{number}        {ECHO; return (NUM);}
 {spaces}        {ECHO; return (SPACE);}
 {operators}     {ECHO; return (OPERATOR);}
+{newline}       {ECHO; return (NEWLINE);}
 "="             {ECHO; return (EQU);}
 "("             {ECHO; return (LEFT_BRACKET);}
 ")"             {ECHO; return (RIGHT_BRACKET);}
-";"      		   {ECHO; return (SEMICOLON);}
-.      		     {ECHO; return(OTHER);}
+";"      		{ECHO; return (SEMICOLON);}
+.      		    {ECHO; return(OTHER);}
 
 %%
 
