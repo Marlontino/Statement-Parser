@@ -1,19 +1,32 @@
-# Makefile for CS530 Assignment3
+# Makefile for CS530 Assignment 3
 # Niko Perry
-BB=bison
-FF=flex
-CC=gcc
 
-all: scanner
+#Variables
+C=cc
+FCC = flex
+BCC = bison
+CFLAGS = -ly -ll
+BFLAGS = -d
+NAME = -o scanner
 
-parser.tab.c parser.tab.h: parser.y
-	$(BB) -d parser.y
+all: parser scanner
 
-lex.yy.c: scanner.l
-	$(FF) scanner.l
+#Generates the y.tab.h
+parser:
+	@echo "Generating parser.tab.h.."
+	$(BCC) $(BFLAGS) parser.y
 
-scanner: lex.yy.c parser.tab.c parser.tab.h
-	$(CC) -o scanner parser.tab.c lex.yy.c -lfl
+#Generates the y.tab.c
+scanner:
+	@echo "Generating parser.tab.c.."
+	$(FCC) scanner.l
+	@echo "Generating executable.."
+	$(C) lex.yy.c parser.tab.c $(CFLAGS) $(NAME)
+	
+	
 
+#Removes the following files with "make clean" command
 clean:
-	rm -f scanner lex.yy.c parser.tab.c parser.tab.h
+	@echo "Cleaning up..."
+	rm scanner lex.yy.c parser.tab.c parser.tab.h
+#######################[ EOF: Makefile ]###################
