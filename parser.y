@@ -39,8 +39,8 @@ INPUT: STATEMENT NEWLINE                   {printPassed("Statement");yylineno++;
      | EXPRESSION NEWLINE                   {printPassed("Expression");yylineno++;}
      | INPUT STATEMENT NEWLINE             {printPassed("Statement");yylineno++;}
      | INPUT EXPRESSION NEWLINE             {printPassed("Expression");yylineno++;}
-     | INPUT error NEWLINE                  {printf("\n%s********************************************************************************\n\n", errorMessage); yylineno++;}
-     | error NEWLINE                        {printf("\n%s********************************************************************************\n\n", errorMessage); yylineno++;}
+     | INPUT error NEWLINE                  {printf("\t%s", errorMessage); yylineno++;}
+     | error NEWLINE                        {printf("\t%s", errorMessage); yylineno++;}
      | INPUT NEWLINE                        {yylineno++;}
      | NEWLINE                              {yylineno++;}
 ;

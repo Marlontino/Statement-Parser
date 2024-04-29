@@ -58,8 +58,7 @@ newline     [\n]
  Note: Function overloading
  *************************************************************/
 void printPassed(char *stmtType) {
-    printf("\n<LINE %d PASSED: Valid %s>\n\n", yylineno, stmtType);
-    printf("********************************************************************************\n\n");
+    printf("\t -- Valid %s>\n", stmtType);
 }
 
 /*************************************************************
@@ -74,10 +73,10 @@ void printPassed(char *stmtType) {
  *************************************************************/
  
 void yyerror(char *reason) {
-    sz = snprintf(NULL, 0, "     <LINE %d FAILED: %s>\n", yylineno, reason);
+    sz = snprintf(NULL, 0, "-- Invalid %s\n", reason);
     errorMessage = (char *)malloc(sz + 1);
     if (errorMessage != NULL){
-       snprintf(errorMessage, sz+1, "<LINE %d FAILED: %s>\n\n", yylineno, reason);
+       snprintf(errorMessage, sz+1, "-- Invalid %s\n", reason);
     }
     else{
        printf("\nError, no memory. Please try running program again.\n");
