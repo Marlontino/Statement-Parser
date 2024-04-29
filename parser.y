@@ -9,7 +9,7 @@
 
 
 /*************************************************************
- Function, linrary, and variable declarations
+ Function, library, and variable declarations
  *************************************************************/
 %{
     #include <stdio.h>
@@ -24,14 +24,14 @@
 
 
 /*************************************************************
- Indicate the tokens that will be used in the grammer rules
+ Indicate the tokens that will be used in the grammar rules
  *************************************************************/
 %token OPERATION SEMI_COLON  EQUALS 
 %token BRACKET_OPEN  BRACKET_CLOSE 
 %token IDENTIFIER NUM OTHER NEWLINE END_OF_FILE
 
 /*************************************************************
- Grammer rule definitions. Displays a message of whether each line
+ Grammar rule definitions. Displays a message of whether each line
  passed and if there was an error.
  *************************************************************/
 %%
@@ -39,8 +39,8 @@ INPUT: ASSIGNMENT NEWLINE                   {printPassed("Assignment");yylineno+
      | EXPRESSION NEWLINE                   {printPassed("Expression");yylineno++;}
      | INPUT ASSIGNMENT NEWLINE             {printPassed("Assignment");yylineno++;}
      | INPUT EXPRESSION NEWLINE             {printPassed("Expression");yylineno++;}
-     | INPUT error NEWLINE                  {printf("\n");printf(errorMessage); printf("********************************************************************************\n\n"); yylineno++;}
-     | error NEWLINE                        {printf("\n");printf(errorMessage); printf("********************************************************************************\n\n"); yylineno++;}
+     | INPUT error NEWLINE                  {printf("\n%s********************************************************************************\n\n", errorMessage); yylineno++;}
+     | error NEWLINE                        {printf("\n%s********************************************************************************\n\n", errorMessage); yylineno++;}
      | INPUT NEWLINE                        {yylineno++;}
      | NEWLINE                              {yylineno++;}
 ;
