@@ -7,7 +7,7 @@ cssc4023
 File manifest:
     scanner.l
     parser.y
-    test.txt
+    scanme.txt
     Makefile
     README
 

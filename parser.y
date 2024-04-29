@@ -20,21 +20,22 @@ int yyerror(char *s);
 
 %%
 
-prog: STATEMENTS
+prog: STATEMENTS        {printf("\t-- valid Statement");}
+    | EXPRESSION        {printf("\t-- valid Expression");}
 ;
 
-STATEMENTS: stmt SPACE STATEMENTS 
-		| stmt SEMICOLON  {printf("\t-- valid");}
-        |      
+STATEMENTS: ID SPACE EQU SPACE EXPRESSION SEMICOLON     
+		  | EXPRESSION  
 
-stmt:
-		ID 
-				
-		| NUM {
-				printf("The number you entered is - %d", $1);
-		}
-		|  OTHER
-;
+
+EXPRESSION: ID SPACE OPERATOR SPACE EXPRESSION
+          | ID SPACE OPERATOR LEFT_BRACKET EXPRESSION RIGHT_BRACKET
+          | ID SPACE OPERATOR LEFT_BRACKET EXPRESSION RIGHT_BRACKET SPACE EXPRESSION
+          | NUM SPACE OPERATOR SPACE NUM
+          | NUM SPACE OPERATOR SPACE ID
+          | LEFT_BRACKET EXPRESSION RIGHT_BRACKET
+          | ID
+          | NUM
 
 %%
 
