@@ -29,6 +29,8 @@
 %token OPERATION SEMI_COLON  EQU 
 %token BRACKET_OPEN  BRACKET_CLOSE 
 %token IDENTIFIER NUM OTHER NEWLINE END_OF_FILE
+%left OPERATION
+
 
 /*************************************************************
  Grammar rule definitions. Displays a message of whether each line
@@ -42,14 +44,11 @@ INPUT: STATEMENT NEWLINE                    {printPassed("Statement");yylineno++
      | INPUT error NEWLINE                  {printf("\t%s", errorMessage); yylineno++;}
      | error NEWLINE                        {printf("\t%s", errorMessage); yylineno++;}
      | INPUT NEWLINE                        {yylineno++;}
-     | NEWLINE                              {yylineno++;}
 ;
 STATEMENT: IDENTIFIER EQU EXPRESSION SEMI_COLON
 ;
-EXPRESSION: IDENTIFIER OPERATION IDENTIFIER
+EXPRESSION: EXPRESSION OPERATION EXPRESSION
            | BRACKET_OPEN EXPRESSION BRACKET_CLOSE
-           | IDENTIFIER OPERATION BRACKET_OPEN EXPRESSION BRACKET_CLOSE
-           | EXPRESSION OPERATION EXPRESSION
            | IDENTIFIER
            | NUM
 ;
