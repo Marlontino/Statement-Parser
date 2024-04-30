@@ -1,10 +1,9 @@
 /*************************************************************
  Name: Niko Perry(cssc4023, Red id: 823063313)
  Project: CS530 STATEMENT 3
- File: syntax.y
- Notes: The file contains the grammer rules for the different acceptable
- statments in the input. This file will print a statment indicating whether each line 
- passed or failed and provide a reason if it failed.
+ File: parser.y
+ Notes: This file contains the grammer rules and parse
+ structure for the program. 
  *************************************************************/
 
 
@@ -24,12 +23,12 @@
 
 
 /*************************************************************
- Indicate the tokens that will be used in the grammar rules
+ Tokens
  *************************************************************/
-%token OPERATION SEMI_COLON  EQU 
+%token OPERATOR SEMICOLON  EQU 
 %token BRACKET_OPEN  BRACKET_CLOSE 
-%token IDENTIFIER NUM OTHER NEWLINE END_OF_FILE
-%left OPERATION
+%token ID DIGIT OTHER NEWLINE END_OF_FILE
+%left OPERATOR
 
 
 /*************************************************************
@@ -45,12 +44,12 @@ INPUT: STATEMENT NEWLINE                    {printPassed("Statement");yylineno++
      | error NEWLINE                        {printf("\t%s", errorMessage); yylineno++;}
      | INPUT NEWLINE                        {yylineno++;}
 ;
-STATEMENT: IDENTIFIER EQU EXPRESSION SEMI_COLON
+STATEMENT: ID EQU EXPRESSION SEMICOLON
 ;
-EXPRESSION: EXPRESSION OPERATION EXPRESSION
+EXPRESSION: EXPRESSION OPERATOR EXPRESSION
            | BRACKET_OPEN EXPRESSION BRACKET_CLOSE
-           | IDENTIFIER
-           | NUM
+           | ID
+           | DIGIT
 ;
 %%
 int main(int argc, char *argv[]){
