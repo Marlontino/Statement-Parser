@@ -25,13 +25,15 @@ char *errorMessage;
  Defines valid input, prints tokens, and returns variable
  name for token for use in syntax.y file
  *************************************************************/
-id          [a-zA-Z][a-zA-Z0-9]*   
+letter      [a-zA-Z]
+digit       [0-9]+
+id          {letter}({letter}|{digit})*
 space       [ \t\r\v\f]
 newline     [\n]                                                             
 %%
 
 {id}                                            {ECHO; return IDENTIFIER;}                                                                          
-
+{digit}                                         {ECHO; return NUM;}
 "+"                                             {ECHO; return OPERATION;}
 "-"                                             {ECHO; return OPERATION;}
 "*"                                             {ECHO; return OPERATION;}
@@ -41,11 +43,9 @@ newline     [\n]
 "="                                             {ECHO; return EQU;}
 "("                                             {ECHO; return BRACKET_OPEN;}
 ")"                                             {ECHO; return BRACKET_CLOSE;}
-
 {newline}                                       {return NEWLINE;}
 {space}                                         {ECHO;}
 .                                               {ECHO;}
-
 %%
 
 /*************************************************************

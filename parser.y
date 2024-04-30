@@ -35,9 +35,9 @@
  passed and if there was an error.
  *************************************************************/
 %%
-INPUT: STATEMENT NEWLINE                   {printPassed("Statement");yylineno++;}
+INPUT: STATEMENT NEWLINE                    {printPassed("Statement");yylineno++;}
      | EXPRESSION NEWLINE                   {printPassed("Expression");yylineno++;}
-     | INPUT STATEMENT NEWLINE             {printPassed("Statement");yylineno++;}
+     | INPUT STATEMENT NEWLINE              {printPassed("Statement");yylineno++;}
      | INPUT EXPRESSION NEWLINE             {printPassed("Expression");yylineno++;}
      | INPUT error NEWLINE                  {printf("\t%s", errorMessage); yylineno++;}
      | error NEWLINE                        {printf("\t%s", errorMessage); yylineno++;}
