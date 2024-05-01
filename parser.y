@@ -1,7 +1,7 @@
 /*************************************************************
  Name: Niko Perry(cssc4023, Red id: 823063313)
  File: parser.y
- Notes: This file contains the grammer rules and parse
+ Notes: Contains the grammer rules and parse
  structure for the program. 
  *************************************************************/
 

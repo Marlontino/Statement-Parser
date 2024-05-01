@@ -1,7 +1,7 @@
 /*************************************************************
  Name: Niko Perry(cssc4023, Red id: 823063313)
  File: scanner.l
- Notes: The file contains the semantic rules for the file inputs. 
+ Notes: Contains the semantic rules for the file inputs. 
  *************************************************************/
  
  /*************************************************************
