@@ -3,11 +3,11 @@
 
 ### File manifest:
     scanner.l
-        Contains the semantic rules for the file inputs. 
+        - Contains the semantic rules for the file inputs. 
     parser.y
-        Contains the grammer rules and parse structure for the program. 
+        - Contains the grammer rules and parse structure for the program. 
     scanme.txt
-        Sample input.
+        - Sample input.
     Makefile
     README
 
