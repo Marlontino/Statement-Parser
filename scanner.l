@@ -1,7 +1,6 @@
 /*************************************************************
  Name: Niko Perry(cssc4023, Red id: 823063313)
- Project: CS530 Assignment 3
- File: semantics.l
+ File: scanner.l
  Notes: The file contains the semantic rules for the file inputs. 
  *************************************************************/
  
@@ -28,20 +27,20 @@ space       [ \t\r\v\f]
 newline     [\n]                                                             
 %%
 
-{id}                                            {ECHO; return ID;}                                                                          
-{digit}                                         {ECHO; return DIGIT;}
-"+"                                             {ECHO; return OPERATOR;}
-"-"                                             {ECHO; return OPERATOR;}
-"*"                                             {ECHO; return OPERATOR;}
-"/"                                             {ECHO; return OPERATOR;}
-"%"                                             {ECHO; return OPERATOR;}
-";"                                             {ECHO; return SEMICOLON;}
-"="                                             {ECHO; return EQU;}
-"("                                             {ECHO; return BRACKET_OPEN;}
-")"                                             {ECHO; return BRACKET_CLOSE;}
-{newline}                                       {return NEWLINE;}
-{space}                                         {ECHO;}
-.                                               {ECHO;}
+{id}           {ECHO; return ID;}                                                                          
+{digit}        {ECHO; return DIGIT;}
+"+"            {ECHO; return OPERATOR;}
+"-"            {ECHO; return OPERATOR;}
+"*"            {ECHO; return OPERATOR;}
+"/"            {ECHO; return OPERATOR;}
+"%"            {ECHO; return OPERATOR;}
+";"            {ECHO; return SEMICOLON;}
+"="            {ECHO; return EQU;}
+"("            {ECHO; return BRACKET_OPEN;}
+")"            {ECHO; return BRACKET_CLOSE;}
+{newline}      {return NEWLINE;}
+{space}        {ECHO;}
+.              {ECHO;}
 %%
 
 /*************************************************************
