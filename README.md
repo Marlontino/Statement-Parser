@@ -1,5 +1,5 @@
-# CS-530, Spring 2024 Assignment 3
-## Niko Perry (cssc4023, Red id: 823063313)
+# Staement Parser
+## Niko Perry 
 
 ### File manifest:
     scanner.l
