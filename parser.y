@@ -16,7 +16,6 @@
     extern void yyerror();
     extern FILE* yyin;
     extern char* errorMessage;
-    extern void printPassed(char*);
 %}
 
 
@@ -25,7 +24,7 @@
  *************************************************************/
 %token OPERATOR SEMICOLON  EQU 
 %token BRACKET_OPEN  BRACKET_CLOSE 
-%token ID DIGIT OTHER NEWLINE END_OF_FILE
+%token ID NUM OTHER NEWLINE END_OF_FILE
 %left OPERATOR
 
 
@@ -34,10 +33,10 @@
  passed and if there was an error.
  *************************************************************/
 %%
-INPUT: STATEMENT NEWLINE                    {printPassed("Statement");}
-     | EXPRESSION NEWLINE                   {printPassed("Expression");}
-     | INPUT STATEMENT NEWLINE              {printPassed("Statement");}
-     | INPUT EXPRESSION NEWLINE             {printPassed("Expression");}
+INPUT: STATEMENT NEWLINE                    {printf("\t -- Valid Statement\n");}
+     | EXPRESSION NEWLINE                   {printf("\t -- Valid Expression\n");}
+     | INPUT STATEMENT NEWLINE              {printf("\t -- Valid Statement\n");}
+     | INPUT EXPRESSION NEWLINE             {printf("\t -- Valid Expression\n");}
      | INPUT error NEWLINE                  {printf("\t%s", errorMessage); }
      | error NEWLINE                        {printf("\t%s", errorMessage); }
      | INPUT NEWLINE                        
@@ -47,7 +46,7 @@ STATEMENT: ID EQU EXPRESSION SEMICOLON
 EXPRESSION: EXPRESSION OPERATOR EXPRESSION
            | BRACKET_OPEN EXPRESSION BRACKET_CLOSE
            | ID
-           | DIGIT
+           | NUM
 ;
 %%
 int main(int argc, char *argv[]){

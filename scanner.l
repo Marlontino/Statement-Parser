@@ -12,8 +12,7 @@
 #include <string.h>
 #include "parser.tab.h"
 void extern yyerror(char*);
-void extern printPassed(char*);
-int sz;
+int errors;
 char *errorMessage;
 %}
 
@@ -21,14 +20,14 @@ char *errorMessage;
  Defines valid input/ tokens for use in syntax.y file
  *************************************************************/
 letter      [a-zA-Z]
-digit       [0-9]+
-id          {letter}({letter}|{digit})*
+num       [0-9]+
+id          {letter}({letter}|{num})*
 space       [ \t\r\v\f]
 newline     [\n]                                                             
 %%
 
 {id}           {ECHO; return ID;}                                                                          
-{digit}        {ECHO; return DIGIT;}
+{num}        {ECHO; return NUM;}
 "+"            {ECHO; return OPERATOR;}
 "-"            {ECHO; return OPERATOR;}
 "*"            {ECHO; return OPERATOR;}
@@ -44,18 +43,6 @@ newline     [\n]
 %%
 
 /*************************************************************
- FUNCTION: printPassed()
- DESCRIPTION: Prints "-- Valid" if input passes
- I/O:
-    input parameters: Char pointer to either "Expression" or "Assignment"
-    output: none
- Note: Function overloading
- *************************************************************/
-void printPassed(char *stmtType) {
-    printf("\t -- Valid %s>\n", stmtType);
-}
-
-/*************************************************************
  FUNCTION: yyerror()
  DESCRIPTION: Prints error message if input fails
  I/O:
@@ -65,13 +52,13 @@ void printPassed(char *stmtType) {
  *************************************************************/
  
 void yyerror(char *reason) {
-    sz = snprintf(NULL, 0, "-- Invalid token:  %s\n", reason);
-    errorMessage = (char *)malloc(sz + 1);
+    errors = snprintf(NULL, 0, "-- Invalid token:  %s\n", reason);
+    errorMessage = (char *)malloc(errors + 1);
     if (errorMessage != NULL){
-       snprintf(errorMessage, sz+1, "-- Invalid token: %s\n", reason);
+       snprintf(errorMessage, errors+1, "-- Invalid token: %s\n", reason);
     }
     else{
-       printf("\nError, no memory. Please try running program again.\n");
+       printf("\nError: Not enough memory\n");
        exit(0);
     }
 }
