@@ -13,7 +13,6 @@
     #include <stdio.h>
     extern int yylex();
     extern char* yytext;
-    extern int yylineno;
     extern void yyerror();
     extern FILE* yyin;
     extern char* errorMessage;
@@ -35,13 +34,13 @@
  passed and if there was an error.
  *************************************************************/
 %%
-INPUT: STATEMENT NEWLINE                    {printPassed("Statement");yylineno++;}
-     | EXPRESSION NEWLINE                   {printPassed("Expression");yylineno++;}
-     | INPUT STATEMENT NEWLINE              {printPassed("Statement");yylineno++;}
-     | INPUT EXPRESSION NEWLINE             {printPassed("Expression");yylineno++;}
-     | INPUT error NEWLINE                  {printf("\t%s", errorMessage); yylineno++;}
-     | error NEWLINE                        {printf("\t%s", errorMessage); yylineno++;}
-     | INPUT NEWLINE                        {yylineno++;}
+INPUT: STATEMENT NEWLINE                    {printPassed("Statement");}
+     | EXPRESSION NEWLINE                   {printPassed("Expression");}
+     | INPUT STATEMENT NEWLINE              {printPassed("Statement");}
+     | INPUT EXPRESSION NEWLINE             {printPassed("Expression");}
+     | INPUT error NEWLINE                  {printf("\t%s", errorMessage); }
+     | error NEWLINE                        {printf("\t%s", errorMessage); }
+     | INPUT NEWLINE                        
 ;
 STATEMENT: ID EQU EXPRESSION SEMICOLON
 ;
