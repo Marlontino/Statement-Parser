@@ -31,4 +31,4 @@
     processing.
 
 ### Snapshots
-    ![p1](https://github.com/Marlontino/Statement-Parser/assets/73397925/9893c6d9-d6b3-41cf-b6c3-6dc8347c0bf0)
+    ![p1](Images/p1.png)
