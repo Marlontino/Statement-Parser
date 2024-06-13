@@ -1,4 +1,4 @@
-# Staement Parser
+# Statement Parser
 ## Niko Perry 
 
 ### About the Project:
