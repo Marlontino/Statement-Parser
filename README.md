@@ -1,6 +1,10 @@
 # Staement Parser
 ## Niko Perry 
 
+### About the Project:
+    This program takes a text file as input and parses it using BNF grammar. 
+    Each line from the file is printed along with a message saying whether it is valid
+    
 ### File manifest:
     scanner.l
         - Contains the semantic rules for the file inputs. 
@@ -30,5 +34,6 @@
     lexical analysis(Flex) and parsing(Bison) for language
     processing.
 
-### Snapshots
-    ![p1](Images/p1.png)
+### Images:
+
+![p1](Images/p1.png)
