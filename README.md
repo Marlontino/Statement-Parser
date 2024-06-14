@@ -4,6 +4,8 @@
 ### About the Project:
     This program takes a text file as input and parses it using BNF grammar. 
     Each line from the file is printed along with a message saying whether it is valid
+
+![p1](Images/p1.png)
     
 ### File manifest:
     scanner.l
@@ -34,6 +36,3 @@
     lexical analysis(Flex) and parsing(Bison) for language
     processing.
 
-### Images:
-
-![p1](Images/p1.png)
